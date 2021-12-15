@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--suppress XmlInvalidId -->
+<html lang="en">
+<head th:replace="~{base :: head('Home')}"></head>
+<body>
+
+<div th:replace="~{base:: topo}"></div>
+
+<div class="container mt-3">
+    <div th:replace="~{base :: titulo('Cadastrar Produto')}"></div>
+
+    <div class="card mt-3">
+
+        <form action="/autor/save" method="post" class="card-body" th:object="${autorSalvarDTO}">
+            <div class="form-group mb-2">
+                <label for="nome">Nome</label>
+                <input th:field="*{nome}" class="form-control"
+                       placeholder="Nome do livro"/>
+                <small>Informa qual o nome do autor.</small>
+                <div th:errors="*{nome}" class="invalid-feedback"> Erros referentes ao nome do autor</div>
+            </div>
+
+
+            <button class="btn btn-primary" type="submit">Concluir</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

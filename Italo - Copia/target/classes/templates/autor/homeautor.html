@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head('Home')}"></head>
+<body>
+<div th:replace="~{base:: topo}"></div>
+
+    <div class="container mt-3">
+        <div th:replace="~{base :: titulo('Autores')}"></div>
+        <nav th:replace="~{base :: nav}"></nav>
+<!--        <div>fguydtsfgudysf</div>-->
+        <div class="col-12 col-sm-8 mb-3">
+            <div class="row mb-1">
+                <div class="card mb-3" th:each="autor: ${autores}">
+                    <div class="card-header alert-success"  th:text="${autor.nome}">Nome do autor</div>
+                    <td>
+                        <a th:href="@{/autor/busca/{id}(id=${autor.id})}" class="btn btn-primary">
+                            <i class="fa fa-search">Buscar livros</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/autor/{id}(id=${autor.id})}" class="btn btn-primary">
+                            <i class="fa fa-edit">Editar</i>
+                        </a>
+                    </td>
+                    <!-- REMOVER -->
+                    <td>
+                        <form action="" th:method="delete" th:action="@{/autor/delete/{id}(id=${autor.id})}">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash ">Deletar</i>
+                            </button>
+                        </form>
+                    </td>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

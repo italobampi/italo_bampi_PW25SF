@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--suppress XmlInvalidId -->
+<html lang="en">
+<head th:replace="~{base :: head('Home')}"></head>
+<body>
+
+<div th:replace="~{base:: topo}"></div>
+
+<div class="container mt-3">
+    <div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+
+    <div class="card mt-3">
+
+        <form action="/livro/salvar" method="post" class="card-body" th:object="${livroSalvarDTO}">
+
+            <div class="form-group mb-2">
+                <label for="titulo">Titulo</label>
+                <input th:field="*{titulo}" th:errorclass="is-invalid" class="form-control"
+                       placeholder="Nome do livro"/>
+                <small>Informa qual o Titulo.</small>
+                <div th:errors="*{titulo}" class="invalid-feedback"> Erros referentes Titulo</div>
+            </div>
+
+
+            <div class="mb-2 form-group">
+                <label for="Sinopse">Sinopse</label>
+                <textarea th:field="*{sinopse}" class="form-control"
+                          placeholder="Sinopse do livro"></textarea>
+                <small>Descreva o livro</small>
+            </div>
+            <div class="form-group mb-2">
+                <label for="Ano">Ano de Publicaçao</label>
+                <input th:field="*{ano}" th:errorclass="is-invalid" class="form-control"
+                       placeholder="Ano"/>
+                <small>Ano de publicaçao</small>
+            </div>
+            <div class="form-group mb-2">
+                <label for="Preço">Preço</label>
+                <input th:field="*{valor}" th:errorclass="is-invalid" class="form-control"
+                       placeholder="Url do produto"/>
+                <div th:errors="*{valor}" class="invalid-feedback"> Erros referentes ao valor do livro</div>
+            </div>
+            <div class="form-group mb-2" >
+                <label for="cars">Autor</label>
+
+                <select  name="autorNome" id="autores" >
+                    <option  class="form-control"  th:each="autor: ${autores}" th:text="${autor.nome}">a</option>
+
+                </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Concluir</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head('Home')}"></head>
+<body>
+<div th:replace="~{base:: topo}"></div>
+
+    <div class="container mt-3">
+        <div th:replace="~{base :: titulo('Livros')}"></div>
+        <nav th:replace="~{base :: nav}"></nav>
+
+        <div class="card mb-3" th:each="livro: ${livros}">
+            <div class="card-header alert-success"  th:text="${livro.titulo}"></div>
+            <div class="card-body row">
+                <div class="col-12 col-sm-8 mb-3">
+                            <div class="row mb-1">
+                                <div class="col-md-5 mb-1">
+                                    Valor: <span th:text="${#numbers.formatCurrency(livro.valor)}">R$ 200,00</span>
+                                </div>
+                                <div class="col-md-5 mb-1">ano publicação:
+                                    <span th:text="${livro.ano}">2010</span>
+                                </div>
+                                <div class="col-md-5 mb-1">Autor
+                                    <span th:text="${livro.autor}">sdff</span>
+                                </div>
+
+                            </div>
+                            <div class="mb-1">Descrição: <textarea class="form-control" th:text="${livro.sinopse}">qualquer descrição sobre o livro</textarea></div>
+                        </div>
+                            <div class="col-12 col-sm-4">
+                    <td>
+                        <a th:href="@{/livro/{id}(id=${livro.id})}" class="btn btn-primary">
+                            <i class="fa fa-edit">Editar</i>
+                        </a>
+                    </td>
+                    <!-- REMOVER -->
+                    <td>
+                        <form action="" th:method="delete" th:action="@{/livro/delete/{id}(id=${livro.id})}">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fa fa-trash ">Deletar</i>
+                            </button>
+                        </form>
+                    </td>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
